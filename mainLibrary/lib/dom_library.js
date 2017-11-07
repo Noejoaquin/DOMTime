@@ -69,30 +69,44 @@
 
 const DOMNodeCollection = __webpack_require__(1);
 
-// core function should return an instance of DOMNodeCollection.. yes?
+// queue will store all callbacks to be called once DOM contents loads
+// until then, docLoaded being false will make sure those functions are pushed in
+const queue = [];
+var docLoaded = false;
+
 window.$l = function (el) {
-  const queue = [];
   if ((el) instanceof HTMLElement) {
     return new DOMNodeCollection([el]);
   } else if ((el) instanceof Function){
-    queue.push(el);
-    document.addEventListener("DOMContentLoaded", function () {
-      // debugger
-      queue.forEach(func => func.call());
-    });
+    gatherDocReadyCBs(el)
+    // queue.push(el);
+    // document.addEventListener("DOMContentLoaded", function () {
+    //   queue.forEach(func => func.call());
   } else {
-    return $l(el);
+    return stringCatch(el);
   }
 
-  function $l(el){
+  gatherDocReadyCBs = (el) => {
+    if (!docLoaded) {
+      queue.push(el)
+    } else {
+      el();
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    docLoaded = true;
+    queue.forEach((func) => func())
+  });
+
+
+  function stringCatch(el){
     let collection;
     let newArr = [];
     const nodeEls = document.querySelectorAll(el);
     nodeEls.forEach((el) => {
       newArr.push(el);
       collection = new DOMNodeCollection(newArr);
-    //   newArr.push(new DOMNodeCollection(el));
-    //   new DOMNodeCollection(newArr);
     });
     return collection;
   }
@@ -131,7 +145,6 @@ class DOMNodeCollection {
   }
 
   html(string) {
-    // debugger
     if(!string){
       return this.htmlArray[0].innerHTML;
     }

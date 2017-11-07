@@ -4,7 +4,6 @@ class DOMNodeCollection {
   }
 
   html(string) {
-    // debugger
     if(!string){
       return this.htmlArray[0].innerHTML;
     }
