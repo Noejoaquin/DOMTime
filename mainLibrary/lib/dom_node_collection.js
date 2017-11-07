@@ -1,7 +1,27 @@
 class DOMNodeCollection {
   constructor(htmlArray) {
     this.htmlArray = htmlArray;
+    this.callback = function(){};
   }
+
+  each(callBack){
+    this.htmlArray.forEach(callBack);
+  }
+
+  on(action, callback){
+    this.htmlArray.forEach( (node) => {
+      node.addEventListener(action, callback);
+      node[action] = [callback];
+    });
+  };
+
+  off(action){
+    this.htmlArray.forEach( (node) => {
+        node[action].forEach( callback => {
+          node.removeEventListener(action, callback);
+        })
+    });
+  };
 
   html(string) {
     if(!string){
@@ -21,25 +41,45 @@ class DOMNodeCollection {
   }
 
   append(el){
-    this.htmlArray.forEach( (node) => {
-      node.innerHTML += el;
-    });
+    //must account for four cases, if the nodelist is empty, the elements are a string,
+    // the elements are a jquery object, or an html element
+    if (this.htmlArray.length === 0) return;
+    if (typeof el === 'string') {
+      this.htmlArray.forEach( (node) => {
+        node.innerHTML += el;
+      });
+    } else if (el instanceof HTMLElement) {
+      this.htmlArray.forEach((node) => {
+        node.innerHTML += el.outerHTML
+      })
+    } else if (el.constructor.name === "DOMNodeCollection" ){
+        this.htmlArray.forEach( (node) => {
+          el.each((child) => {
+            //will add a node to the end of the list of children of a parent node
+            node.appendChild(child.cloneNode()) //cloning the child will make
+            // it is attached to the document
+          })
+        })
+    }
   }
 
   attr(attrName, value) {
-    this.htmlArray.forEach( (el) =>{
-      el.setAttribute(attrName, value);
-    });
+    // attr can take two, or one args
+    if (value !== undefined) {
+      this.htmlArray.forEach( (el) =>{
+        el.setAttribute(attrName, value);
+      });
+    } else {
+      return this.htmlArray[0].getAttribute(attrName)
+    }
   }
 
   addClass(value) {
-    this.attr('class', value);
+    this.htmlArray.forEach(element => element.classList.add(value));
   }
 
-  removeClass() {
-    this.htmlArray.forEach( (el) => {
-      el.removeAttribute('class');
-    });
+  removeClass(value) {
+    this.htmlArray.forEach(element => element.classList.remove(value));
   }
 
   children() {
@@ -79,20 +119,5 @@ class DOMNodeCollection {
   }
 
 }
-
-DOMNodeCollection.prototype.on = function(action, callback){
-  this.htmlArray.forEach( (node) => {
-    node.addEventListener(action, callback);
-    node[callback] = callback;
-  });
-};
-
-DOMNodeCollection.prototype.off = function(action, callback){
-  this.htmlArray.forEach( (node) => {
-    node.removeEventListener(action, node[callback]);
-  });
-};
-
-
 
 module.exports = DOMNodeCollection;

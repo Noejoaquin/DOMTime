@@ -74,17 +74,16 @@ const DOMNodeCollection = __webpack_require__(1);
 const queue = [];
 var docLoaded = false;
 
+
 window.$l = function (el) {
   if ((el) instanceof HTMLElement) {
     return new DOMNodeCollection([el]);
   } else if ((el) instanceof Function){
-    gatherDocReadyCBs(el)
-    // queue.push(el);
-    // document.addEventListener("DOMContentLoaded", function () {
-    //   queue.forEach(func => func.call());
+    return gatherDocReadyCBs(el)
   } else {
     return stringCatch(el);
   }
+};
 
   gatherDocReadyCBs = (el) => {
     if (!docLoaded) {
@@ -97,11 +96,18 @@ window.$l = function (el) {
   document.addEventListener("DOMContentLoaded", () => {
     docLoaded = true;
     queue.forEach((func) => func())
+     $l('button').on('click', () => console.log('clicked'))
   });
 
 
   function stringCatch(el){
+    debugger
     let collection;
+    if (el.split('')[0] === '<' && el.split('').reverse()[0] === '>'){
+      debugger
+      let element = document.createElement(el.slice(1, el.length-1));
+      return new DOMNodeCollection([element])
+    }
     let newArr = [];
     const nodeEls = document.querySelectorAll(el);
     nodeEls.forEach((el) => {
@@ -111,28 +117,43 @@ window.$l = function (el) {
     return collection;
   }
 
-  $l.extend = function (target, ...args) {
-    var objsKeys;
-    for(let i=0; i < args.length; i++){
-      objsKeys = Object.keys(args[i]);
-      objsKeys.forEach((el) => {
-        target[el] = args[i][el];
-      });
+
+  $l.ajax = function (options){
+    const defaults = {
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      method: 'get',
+      url: '',
+      success: () => {},
+      error: () => {},
+      data: {},
     }
-    return target;
+
+    const actualRequest = new XMLHttpRequest ();
+    options = $l.extend(defaults, options);
+
+    actualRequest.open(options.method, options.url)
+    actualRequest.onload = (e) => {
+      if (actualRequest.status === 200) {
+        options.success(actualRequest.response)
+      } else {
+        options.error(actualRequest.response)
+      }
+    };
+
+    actualRequest.send(JSON.stringify(options.data));
+
   };
 
-  $l.ajax = function (options){};
-
+$l.extend = (target, ...args) => {
+  var objsKeys;
+  for(let i=0; i < args.length; i++){
+    objsKeys = Object.keys(args[i]);
+    objsKeys.forEach((el) => {
+      target[el] = args[i][el];
+    });
+  }
+  return target;
 };
-
-
-$l(() => {
-  // debugger
-  console.log("it works!");
-});
-
-// window.$l = $l;
 
 
 /***/ }),
@@ -142,7 +163,27 @@ $l(() => {
 class DOMNodeCollection {
   constructor(htmlArray) {
     this.htmlArray = htmlArray;
+    this.callback = function(){};
   }
+
+  each(callBack){
+    this.htmlArray.forEach(callBack);
+  }
+
+  on(action, callback){
+    this.htmlArray.forEach( (node) => {
+      node.addEventListener(action, callback);
+      node[action] = [callback];
+    });
+  };
+
+  off(action){
+    this.htmlArray.forEach( (node) => {
+        node[action].forEach( callback => {
+          node.removeEventListener(action, callback);
+        })
+    });
+  };
 
   html(string) {
     if(!string){
@@ -162,25 +203,45 @@ class DOMNodeCollection {
   }
 
   append(el){
-    this.htmlArray.forEach( (node) => {
-      node.innerHTML += el;
-    });
+    //must account for four cases, if the nodelist is empty, the elements are a string,
+    // the elements are a jquery object, or an html element
+    if (this.htmlArray.length === 0) return;
+    if (typeof el === 'string') {
+      this.htmlArray.forEach( (node) => {
+        node.innerHTML += el;
+      });
+    } else if (el instanceof HTMLElement) {
+      this.htmlArray.forEach((node) => {
+        node.innerHTML += el.outerHTML
+      })
+    } else if (el.constructor.name === "DOMNodeCollection" ){
+        this.htmlArray.forEach( (node) => {
+          el.each((child) => {
+            //will add a node to the end of the list of children of a parent node
+            node.appendChild(child.cloneNode()) //cloning the child will make
+            // it is attached to the document
+          })
+        })
+    }
   }
 
   attr(attrName, value) {
-    this.htmlArray.forEach( (el) =>{
-      el.setAttribute(attrName, value);
-    });
+    // attr can take two, or one args
+    if (value !== undefined) {
+      this.htmlArray.forEach( (el) =>{
+        el.setAttribute(attrName, value);
+      });
+    } else {
+      return this.htmlArray[0].getAttribute(attrName)
+    }
   }
 
   addClass(value) {
-    this.attr('class', value);
+    this.htmlArray.forEach(element => element.classList.add(value));
   }
 
-  removeClass() {
-    this.htmlArray.forEach( (el) => {
-      el.removeAttribute('class');
-    });
+  removeClass(value) {
+    this.htmlArray.forEach(element => element.classList.remove(value));
   }
 
   children() {
@@ -220,21 +281,6 @@ class DOMNodeCollection {
   }
 
 }
-
-DOMNodeCollection.prototype.on = function(action, callback){
-  this.htmlArray.forEach( (node) => {
-    node.addEventListener(action, callback);
-    node[callback] = callback;
-  });
-};
-
-DOMNodeCollection.prototype.off = function(action, callback){
-  this.htmlArray.forEach( (node) => {
-    node.removeEventListener(action, node[callback]);
-  });
-};
-
-
 
 module.exports = DOMNodeCollection;
 
