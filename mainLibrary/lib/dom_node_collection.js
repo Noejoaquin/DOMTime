@@ -43,6 +43,7 @@ class DOMNodeCollection {
   append(el){
     //must account for four cases, if the nodelist is empty, the elements are a string,
     // the elements are a jquery object, or an html element
+    debugger
     if (this.htmlArray.length === 0) return;
     if (typeof el === 'string') {
       this.htmlArray.forEach( (node) => {
@@ -50,7 +51,7 @@ class DOMNodeCollection {
       });
     } else if (el instanceof HTMLElement) {
       this.htmlArray.forEach((node) => {
-        node.innerHTML += el.outerHTML
+        return node.innerHTML += el.outerHTML
       })
     } else if (el.constructor.name === "DOMNodeCollection" ){
         this.htmlArray.forEach( (node) => {

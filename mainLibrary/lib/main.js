@@ -32,10 +32,8 @@ window.$l = function (el) {
 
 
   function stringCatch(el){
-    debugger
     let collection;
     if (el.split('')[0] === '<' && el.split('').reverse()[0] === '>'){
-      debugger
       let element = document.createElement(el.slice(1, el.length-1));
       return new DOMNodeCollection([element])
     }
