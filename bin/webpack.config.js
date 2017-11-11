@@ -1,8 +1,8 @@
 module.exports = {
-  entry: "./lib/main.js",
+  entry: "../src/main.js",
   output: {
     path: __dirname,
-    filename: "./lib/dom_library.js"
+    filename: "./dom_library.js"
       },
       devtool: "source-map"
 };
