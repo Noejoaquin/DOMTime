@@ -12,6 +12,7 @@ window.$l = function (el) {
   } else if ((el) instanceof Function){
     return gatherDocReadyCBs(el)
   } else {
+    debugger
     return stringCatch(el);
   }
 };
@@ -27,13 +28,12 @@ window.$l = function (el) {
   document.addEventListener("DOMContentLoaded", () => {
     docLoaded = true;
     queue.forEach((func) => func())
-     $l('button').on('click', () => console.log('clicked'))
   });
 
 
   function stringCatch(el){
     let collection;
-    if (el.split('')[0] === '<' && el.split('').reverse()[0] === '>'){
+    if (el[0] === '<' && el[el.length - 1] === '>'){
       let element = document.createElement(el.slice(1, el.length-1));
       return new DOMNodeCollection([element])
     }
@@ -41,9 +41,9 @@ window.$l = function (el) {
     const nodeEls = document.querySelectorAll(el);
     nodeEls.forEach((el) => {
       newArr.push(el);
-      collection = new DOMNodeCollection(newArr);
+      // collection = new DOMNodeCollection(newArr);
     });
-    return collection;
+    return new DOMNodeCollection(newArr);
   }
 
 

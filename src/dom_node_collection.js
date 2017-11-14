@@ -43,11 +43,11 @@ class DOMNodeCollection {
   append(el){
     //must account for four cases, if the nodelist is empty, the elements are a string,
     // the elements are a jquery object, or an html element
-    debugger
     if (this.htmlArray.length === 0) return;
     if (typeof el === 'string') {
+      debugger
       this.htmlArray.forEach( (node) => {
-        node.innerHTML += el;
+        return node.innerHTML += el;
       });
     } else if (el instanceof HTMLElement) {
       this.htmlArray.forEach((node) => {
@@ -57,7 +57,7 @@ class DOMNodeCollection {
         this.htmlArray.forEach( (node) => {
           el.each((child) => {
             //will add a node to the end of the list of children of a parent node
-            node.appendChild(child.cloneNode()) //cloning the child will make
+            node.appendChild(child.cloneNode()) //cloning the child will make sure
             // it is attached to the document
           })
         })

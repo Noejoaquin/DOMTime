@@ -1,7 +1,10 @@
 
+
+
 $l('.todo-button').on('click', () => {
   const newLi = $l('<li>');
-  const todo = $l('.todo-input').htmlArray[0].value;
-  const item = newLi.append(todo);
-  $l('.todo-list').append(item);
+  const todoContent = $l('.todo-input').htmlArray[0].value;
+  debugger
+  newLi.append(todoContent);
+  $l('.todo-list').append(newLi);
 })
