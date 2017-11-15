@@ -1,0 +1,78 @@
+.todo-header {
+  display: flex;
+  justify-content: center;
+  color: green;
+  font-family: cursive;
+  font-size: 30px;
+}
+
+.todo-h1-generator-button {
+
+}
+.todo-container {
+  margin-bottom: 40px;
+}
+
+.todo-fill-in{
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list {
+  border: 1px solid red;
+}
+
+.list-container li {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.change-color {
+  background-color: red;
+}
+
+.new-button {
+  width: 150px;
+  height: 115px;
+  text-align: center;
+  background-color: green;
+  color: #fff;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+  font-size: 20px;
+}
+
+.new-button:hover {
+  cursor: pointer;
+
+}
+
+.create-button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.created-buttons {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  width: 100%
+}
+
+.added-button {
+  margin: 20px;
+  height: 80px;
+  width: 60px;
+  color: #fff;
+  background-color: aquamarine;
+}
+
+.added-button:hover {
+  cursor: pointer;
+}
+
+.h1-generator-input {
+  margin: 20px;
+}

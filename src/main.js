@@ -12,7 +12,6 @@ window.$l = function (el) {
   } else if ((el) instanceof Function){
     return gatherDocReadyCBs(el)
   } else {
-    debugger
     return stringCatch(el);
   }
 };

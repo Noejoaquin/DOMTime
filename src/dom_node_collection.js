@@ -45,7 +45,6 @@ class DOMNodeCollection {
     // the elements are a jquery object, or an html element
     if (this.htmlArray.length === 0) return;
     if (typeof el === 'string') {
-      debugger
       this.htmlArray.forEach( (node) => {
         return node.innerHTML += el;
       });
@@ -54,10 +53,12 @@ class DOMNodeCollection {
         return node.innerHTML += el.outerHTML
       })
     } else if (el.constructor.name === "DOMNodeCollection" ){
+        debugger
         this.htmlArray.forEach( (node) => {
           el.each((child) => {
+            debugger
             //will add a node to the end of the list of children of a parent node
-            node.appendChild(child.cloneNode()) //cloning the child will make sure
+            node.appendChild(child.cloneNode(true)) //cloning the child will make sure
             // it is attached to the document
           })
         })
@@ -81,6 +82,10 @@ class DOMNodeCollection {
 
   removeClass(value) {
     this.htmlArray.forEach(element => element.classList.remove(value));
+  }
+
+  classList(){
+    return this.htmlArray.map(element => element.classList)
   }
 
   children() {
