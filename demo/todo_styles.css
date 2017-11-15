@@ -6,8 +6,16 @@
   font-size: 30px;
 }
 
-.todo-h1-generator-button {
+.update-todo-header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.todo-h1-generator-button {
+  height: 20px;
+  border-radius: 2.5px;
+  background-color: gold;
 }
 .todo-container {
   margin-bottom: 40px;
@@ -20,6 +28,15 @@
 
 .todo-list {
   border: 1px solid red;
+}
+
+.crossed-out {
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
+.todo-list li:hover {
+  cursor:pointer;
 }
 
 .list-container li {

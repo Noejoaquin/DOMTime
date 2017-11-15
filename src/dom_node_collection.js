@@ -84,8 +84,8 @@ class DOMNodeCollection {
     this.htmlArray.forEach(element => element.classList.remove(value));
   }
 
-  classList(){
-    return this.htmlArray.map(element => element.classList)
+  toggleClass(toggle){
+    this.htmlArray.forEach(element => element.classList.toggle(toggle))
   }
 
   children() {
@@ -122,6 +122,11 @@ class DOMNodeCollection {
       el.parentNode.removeChild(el);
     });
     this.htmlArray = [];
+  }
+
+  removeChild(child){
+    let index = this.htmlArray.indexOf(child)
+    delete this.htmlArray[index]
   }
 
 }
