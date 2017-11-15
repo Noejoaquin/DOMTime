@@ -16,7 +16,7 @@ window.$l = function (el) {
   }
 };
 
-  gatherDocReadyCBs = (el) => {
+  function gatherDocReadyCBs(el){
     if (!docLoaded) {
       queue.push(el)
     } else {
