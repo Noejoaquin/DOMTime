@@ -6,6 +6,7 @@ $l('.todo-form').on('submit', (e) => {
   newLi.addClass(`todo-${todoCount}`)
   const todoContent = $l('.todo-input').htmlArray[0].value; // grabs input value
   if (todoContent === '') return;
+  $l('.clear').toggleClass('clear-button-hidden')
   $l('.clear-todo-container').addClass('reveal')
   $l('.todo-input').htmlArray[0].value = '';
   newLi.append(todoContent);
@@ -16,10 +17,11 @@ $l('.todo-form').on('submit', (e) => {
   todoCount++;
 })
 
-$l('.clear-button').on('click', (e) => {
+$l('.clear').on('click', (e) => {
   debugger
   $l('.todo-list').remove()
   $l('.clear-todo-container').removeClass('reveal')
+  $l('.clear').toggleClass('clear-button-hidden')
   let newTodoList = $l('<ul>')
   newTodoList.addClass('todo-list')
   $l('.list-container').append(newTodoList)

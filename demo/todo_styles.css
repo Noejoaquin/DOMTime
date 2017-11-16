@@ -1,18 +1,20 @@
+ul {
+  padding: 0
+}
+
 html {
   font-family: 'Vollkorn', serif;
 }
 
 .todo-header {
-  display: flex;
-  justify-content: center;
+  /*display: flex;*/
+  /*justify-content: center;*/
   color: green;
   font-size: 30px;
 }
 
-.update-todo-header-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.h1-generator-input {
+  margin: 20px;
 }
 
 .todo-h1-generator-button {
@@ -20,9 +22,16 @@ html {
   border-radius: 2.5px;
   background-color: gold;
 }
+.update-todo-header-container {
+  /*display: flex;*/
+  /*justify-content: center;*/
+  /*align-items: center;*/
+}
+
 
 .todo-container {
   margin-bottom: 40px;
+  margin-left: 10%;
 }
 
 .todo-fill-in{
@@ -43,7 +52,7 @@ html {
 }
 
 .todo-input {
-  width: 350px;
+  width: 318px;
   height: 35px;
   font-size: 20px;
   margin-top: 7px;
@@ -69,6 +78,7 @@ html {
   padding-top: 4px;
   border: none;
   outline:none;
+  margin: 3px;
   -moz-transition:color .2s ease-in;
   -o-transition:color .2s ease-in;
   -webkit-transition:color .2s ease-in;
@@ -115,10 +125,12 @@ html {
   flex-direction: column;
   /*background-color: #B3ABAB;*/
   margin: 15px;
+  padding-bottom: 13px;
 }
 
 .list-container {
   display: flex;
+  position: relative;
   flex-direction: row-reverse;
   float: left;
   background-color: #E7E7E7;
@@ -127,6 +139,7 @@ html {
 }
 
 .list-container li {
+  width: 97%;
   word-wrap: break-word;
   list-style: none;
   letter-spacing: 0.5px;
@@ -140,23 +153,30 @@ html {
 
 .clear-todo-container {
   position: relative;
+  width: 144px;
+  padding-left: 10px
 }
 
 .clear-container-text {
   font-size: 12px;
+  color: #778EC8;
+}
+
+.clear-button-hidden {
+  display: none;
 }
 
 .clear-button {
   line-height: 10px;
   border-radius: 6.5px;
-  color: #4B1313;
+  color: #778EC8;
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   padding: 4px;
   border: none;
   position: absolute;
-  right: 5px;
-  bottom: 2px;
+  right: 280px;
+  bottom: 10px;
   -moz-transition: color .2s ease-in;
   -o-transition: color .2s ease-in;
   -webkit-transition: color .2s ease-in;
@@ -165,7 +185,9 @@ html {
 
 .clear-button:hover{
   cursor: pointer;
-  background-color: #C74B4B;
+  background-color: #778EC8;
+  color: #E7E7E7;
+
 }
 
 
@@ -215,6 +237,3 @@ html {
   cursor: pointer;
 }
 
-.h1-generator-input {
-  margin: 20px;
-}
