@@ -1,6 +1,7 @@
 
 let todoCount = 1
-$l('.todo-button').on('click', () => {
+$l('.todo-form').on('submit', (e) => {
+  e.preventDefault();
   const newLi = $l('<li>');
   newLi.addClass(`todo-${todoCount}`)
   const todoContent = $l('.todo-input').htmlArray[0].value; // grabs input value
