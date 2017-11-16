@@ -65,6 +65,18 @@ class DOMNodeCollection {
     }
   }
 
+  prepend(el){
+    this.htmlArray.forEach( (node) => {
+      el.each((child) => {
+        debugger
+        let children = node.children
+        //will add a node to the end of the list of children of a parent node
+        node.insertBefore(child.cloneNode(true), children[0]) //cloning the child will make sure
+        // it is attached to the document
+      })
+    })
+  }
+
   attr(attrName, value) {
     // attr can take two, or one args
     if (value !== undefined) {

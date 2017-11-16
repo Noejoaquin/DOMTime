@@ -7,7 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type='text/javascript' src='./bin/dom_library.js'></script>
   </head>
+  <link href="https://fonts.googleapis.com/css?family=Vollkorn" rel="stylesheet">
   <body>
+    <div class="todo-meta-container">
+
+
     <div class="todo-header-container">
       <h1 class='todo-header'>TODO List</h1>
     </div>
@@ -20,14 +24,21 @@
 
 
     <div class="todo-fill-in">
-    <label for=""> Write in your TODO!
+    <label class='fill-in-label' for=""> Write in your TODO!
     </br>
-    <input type="text" class='todo-input' value="">
-    <button type="button" class='todo-button' name="button">Make Todo</button>
+    <div class="">
+      <input type="text" class='todo-input' value="">
+      <button type="button" class='todo-button' name="button">Make Todo</button>
+    </div>
     </label>
   </div>
   <div class="list-container">
+    <div class="clear-todo-container hidden">
+      <p class='clear-container-text'>Click item to cross off todo</p>
+      <button type="button" class='clear-button' name="button">clear list</button>
+    </div>
     <ul class='todo-list'></ul>
+  </div>
   </div>
 
       <div class="create-button-div">

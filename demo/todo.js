@@ -4,37 +4,45 @@ $l('.todo-button').on('click', () => {
   const newLi = $l('<li>');
   newLi.addClass(`todo-${todoCount}`)
   const todoContent = $l('.todo-input').htmlArray[0].value; // grabs input value
+  if (todoContent === '') return;
+  $l('.clear-todo-container').addClass('reveal')
   $l('.todo-input').htmlArray[0].value = '';
   newLi.append(todoContent);
-  $l('.todo-list').append(newLi);
+  $l('.todo-list').prepend(newLi);
   $l(`.todo-${todoCount}`).on('click', (e) => {  // this event handles must come after the li has been appended to the document
     $l(e.currentTarget).toggleClass('crossed-out')
   })
   todoCount++;
 })
 
+$l('.clear-button').on('click', (e) => {
+  debugger
+  $l('.todo-list').remove()
+  $l('.clear-todo-container').removeClass('reveal')
+  let newTodoList = $l('<ul>')
+  newTodoList.addClass('todo-list')
+  $l('.list-container').append(newTodoList)
+})
+
 
 const button = $l('<button>');
+let buttonCount = 1
 button.addClass('new-button')
 button.append('lets make some more buttons! CLICK ME')
 $l('.create-button-div').append(button)
 $l('.new-button').on('click', () => {
   // debugger
   const addedButton = $l('<button>');
-  addedButton.addClass(`added-button`);
+  addedButton.addClass(`added-button-${buttonCount}`);
+  addedButton.addClass('created-button')
   addedButton.append('click if you dare')
   let newLi = $l('<li>')
   newLi.append(addedButton)
   $l('.created-buttons').append(newLi)
-  // $l(`.added-button`).on('click', () => {
-  //   $l('body').addClass('change-color')
-  // })
-  // $l(`.added-button`).on('click', () => {
-  //   debugger
-  //   if ($l('.added-button').classList.includes('change-color')){
-  //     $l('body').removeClass('change-color')
-  //   }
-  // })
+  $l(`.added-button-${buttonCount}`).on('click', () => {
+    $l('body').toggleClass('change-color')
+  })
+  buttonCount++;
 })
 
 
