@@ -1,5 +1,5 @@
 $l(() => {
-  
+
   let todoCount = 1
   $l('.todo-form').on('submit', (e) => {
     e.preventDefault();
@@ -18,7 +18,7 @@ $l(() => {
     })
     todoCount++;
   })
-  
+
   $l('.clear').on('click', (e) => {
     debugger
     $l('.todo-list').remove()
@@ -29,8 +29,8 @@ $l(() => {
     newTodoList.addClass('todo-list')
     $l('.list-container').append(newTodoList)
   })
-  
-  
+
+
   // const button = $l('<button>');
   // let buttonCount = 1
   // button.addClass('new-button')
@@ -50,8 +50,8 @@ $l(() => {
   //   })
   //   buttonCount++;
   // })
-  
-  
+
+
   // const h1Input = $l('<input>')
   // h1Input.addClass('h1-generator-input')
   // $l('.update-todo-header-container').append(h1Input)
@@ -68,14 +68,14 @@ $l(() => {
   //   newH1.addClass('todo-header')
   //   $l('.todo-header-container').append(newH1)
   // })
-  
+
   // $l('weather-button').on('click', () => {
   //   $l.ajax({
   //     url:
   //   })
   // })
-  
-  
+
+
   function createLis(){
     let count = 0;
     while (count < 400){
@@ -85,34 +85,38 @@ $l(() => {
       count++;
     }
   }
-  
+
   $l(createLis)
-  
-  
+
+
   $('.color-tile').on('mouseover', (e) => {
     // $l('.color-tile').each( tile => {
       let hexChars = '0123456789ABCDEF'
       var color = ''
       for (let i = 0; i < 6; i++){
         debugger
-        color += hexChars[Math.floor(Math.random() * 16)] 
+        color += hexChars[Math.floor(Math.random() * 16)]
       }
       debugger
       $l(e.currentTarget).setColor(color)
     // })
   })
-  
+
   $l('.clear-easel').on('click', () => {
     $l('.color-tile').each( tile => {
       $l(tile).setColor('778EC8')
     })
   })
-  
-  
-  
+
+
+
   $l('.weather-form').on('submit', (e) => {
     debugger
     e.preventDefault()
+    $l('.weather-specifics').remove()
+    let weatherSpecs = $l('<ul>')
+    weatherSpecs.addClass('weather-specifics')
+    $l('.weather-details').append(weatherSpecs)
     let city = $l('.weather-input').htmlArray[0].value
     $l.ajax({
       type: 'GET',
@@ -124,19 +128,30 @@ $l(() => {
         console.log(Object.keys(data))
         let datum = JSON.parse(data)
         let city = datum.name;
-        let country = datum.country;
+        let country = datum.sys.country;
         let description = datum.weather[0].description;
-        let temperature = ((9/5) * (datum.main.temp - 273)) + 32
+        let temperature = Math.floor(((9/5) * (datum.main.temp - 273)) + 32)
         let weatherNote = $l("<li>")
-        weatherNote.append(`#{city}, #{country} is currently experiencing #{description}, the current temperature is #{weather}`)
+        weatherNote.append(`${city}, ${country} is currently experiencing...`)
+        let weatherDescription = $l('<li>')
+        weatherDescription.append(`${description};`)
+        let weatherTemperature =  $l('<li>')
+        weatherTemperature.append(`The current temperature is ${temperature} degrees `) // here!
+        let tempSpecifics = $l('<li>')
+        tempSpecifics.append(`The high today is ${Math.floor(((9/5) * (datum.main.temp_max - 273)) + 32)}, the low is ${Math.floor(((9/5) * (datum.main.temp_min - 273)) + 32)} `)
         debugger
         $l('.weather-specifics').append(weatherNote)
+        $l('.weather-specifics').append(weatherDescription)
+        $l('.weather-specifics').append(weatherTemperature)
+        $l('.weather-specifics').append(tempSpecifics)
       },
       error() {
         console.error("An error occurred.");
+        let errorLi = $l('<li>')
+        errorLi.append(`Sorry, no weather could be found for "${city}". Maybe check the spelling.`)
+        $l('.weather-specifics').append(errorLi)
       },
     });
-    
+
   })
 })
-
