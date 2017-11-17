@@ -2,8 +2,61 @@ ul {
   padding: 0
 }
 
+p, h2 {
+  /*display: inherit;*/
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+
 html {
   font-family: 'Vollkorn', serif;
+}
+
+body {
+  background: linear-gradient( #A0ABC6, #49629F)
+}
+
+.main-header {
+  color :#4360A6; 
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.main-header-title {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+  font-size: 30px;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  padding-bottom: 3px;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3px;
+}
+
+.fa {
+  padding: 5px;
+  font-size: 20px;
+  color :#4360A6; 
+}
+
+.sub-heading {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-meta-container {
+  margin-top: 8%;
 }
 
 .todo-header {
@@ -31,7 +84,7 @@ html {
 
 .todo-container {
   margin-bottom: 40px;
-  margin-left: 10%;
+  margin-left: 8%;
   display: flex;
   justify-content: space-around;
   
@@ -165,6 +218,13 @@ html {
   display: none;
 }
 
+
+.easel-title {
+  margin: 0px;
+  color: #778EC8;
+  font-size: 20px;
+}
+
 .clear-button {
   line-height: 10px;
   border-radius: 6.5px;
@@ -204,7 +264,7 @@ html {
   width: 400px;
   height: 400px;
   background-color: #E7E7E7;
-  margin-top: 0px;
+  margin-top: 9px;
 }
 
 .grid:hover {
@@ -223,12 +283,16 @@ html {
 .grid-container {
   margin-right: 10%;
   vertical-align: top;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   background-color: #E7E7E7;
-  height: 450px;
+  height: 485px;
   position: relative;
   border-radius: 5.5px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
+
 
 .todo-button {
   line-height: 25px;
@@ -248,10 +312,9 @@ html {
 
 .clear-easel {
   position: absolute;
-  bottom: 9px;
-  right: 159px;
+  bottom: 16px;
+  right: 185px;
 }
-
 
 .color-tile{
   
