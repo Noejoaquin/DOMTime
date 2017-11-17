@@ -5,12 +5,12 @@ $l(() => {
     e.preventDefault();
     const newLi = $l('<li>');
     newLi.addClass(`todo-${todoCount}`)
-    const todoContent = $l('.todo-input').htmlArray[0].value; // grabs input value
+    const todoContent = $l('.basic-input').htmlArray[0].value; // grabs input value
     if (todoContent === '') return;
     $l('.clear').removeClass('clear-button-hidden')
     $l('.clear').addClass('clear-button')
     $l('.clear-todo-container').addClass('reveal')
-    $l('.todo-input').htmlArray[0].value = '';
+    $l('.basic-input').htmlArray[0].value = '';
     newLi.append(todoContent);
     $l('.todo-list').prepend(newLi);
     $l(`.todo-${todoCount}`).on('click', (e) => {  // this event handles must come after the li has been appended to the document
@@ -106,6 +106,37 @@ $l(() => {
     $l('.color-tile').each( tile => {
       $l(tile).setColor('778EC8')
     })
+  })
+  
+  
+  
+  $l('.weather-form').on('submit', (e) => {
+    debugger
+    e.preventDefault()
+    let city = $l('.weather-input').htmlArray[0].value
+    $l.ajax({
+      type: 'GET',
+      url: `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=bcb83c4b54aee8418983c2aff3073b3b`,
+      success(data) {
+        console.log("We have your weather!")
+        console.log(data);
+        // debugger
+        console.log(Object.keys(data))
+        let datum = JSON.parse(data)
+        let city = datum.name;
+        let country = datum.country;
+        let description = datum.weather[0].description;
+        let temperature = ((9/5) * (datum.main.temp - 273)) + 32
+        let weatherNote = $l("<li>")
+        weatherNote.append(`#{city}, #{country} is currently experiencing #{description}, the current temperature is #{weather}`)
+        debugger
+        $l('.weather-specifics').append(weatherNote)
+      },
+      error() {
+        console.error("An error occurred.");
+      },
+    });
+    
   })
 })
 

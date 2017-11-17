@@ -35,7 +35,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 25px;
-  padding-bottom: 3px;
+  padding-bottom: 3px; 
 }
 
 .links {
@@ -82,7 +82,7 @@ body {
 }
 
 
-.todo-container {
+.container {
   margin-bottom: 40px;
   margin-left: 8%;
   display: flex;
@@ -90,7 +90,7 @@ body {
   
 }
 
-.todo-fill-in{
+.fill-in{
   width: 500px;
   height: 100px;
   background-color: #E7E7E7;
@@ -103,7 +103,7 @@ body {
   padding-bottom: 15px;
 }
 
-.todo-input {
+.basic-input {
   width: 318px;
   height: 35px;
   font-size: 20px;
@@ -324,7 +324,23 @@ body {
   background-color: red;
 }
 
-.new-button {
+.weather-input {
+  width:350px;
+}
+
+.weather-input::placeholder {
+  font-size: 18px;
+}
+
+.weather-specifics > li {
+  font-size: 12px;
+}
+
+
+
+
+
+/*.new-button {
   width: 150px;
   height: 115px;
   text-align: center;
@@ -362,4 +378,4 @@ body {
 .added-button:hover {
   cursor: pointer;
 }
-
+*/
