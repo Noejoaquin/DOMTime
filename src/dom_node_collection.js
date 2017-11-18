@@ -22,9 +22,8 @@ class DOMNodeCollection {
         })
     });
   };
-  
+
   setColor(color){
-    debugger
     this.htmlArray[0].style.backgroundColor = '#' + color
   }
 

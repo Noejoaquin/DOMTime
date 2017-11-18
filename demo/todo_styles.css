@@ -87,12 +87,11 @@ body {
   margin-left: 8%;
   display: flex;
   justify-content: space-around;
-
 }
 
 .fill-in{
   width: 500px;
-  height: 100px;
+  /*height: 100px;*/
   background-color: #E7E7E7;
   border-radius: 5.5px;
   text-align: center;
@@ -105,7 +104,7 @@ body {
 
 .basic-input {
   width: 318px;
-  height: 35px;
+  /*height: 35px;*/
   font-size: 20px;
   margin-top: 7px;
   margin-bottom: 10px;
@@ -175,7 +174,6 @@ body {
   margin-right: 7px;
   display: flex;
   flex-direction: column;
-  /*background-color: #B3ABAB;*/
   margin: 15px;
   padding-bottom: 13px;
 }
@@ -184,7 +182,6 @@ body {
   display: flex;
   position: relative;
   flex-direction: row-reverse;
-  float: left;
   background-color: #E7E7E7;
   width: 500px;
   border-radius: 5.5px;
@@ -326,6 +323,7 @@ body {
 
 .weather-input {
   width:350px;
+  margin-left: 16px;
 }
 
 .weather-input::placeholder {
@@ -342,7 +340,21 @@ body {
 
 
 .weather-fill-in {
-  height: 230px
+  height: 230px;
+  margin-top: 90px;
+}
+
+.weather-button {
+  margin-left: 10px;
+}
+
+.container-minor {
+  /*position: absolute;*/
+}
+
+.weather-container {
+  /*display: block;*/
+  /*position: absolute;*/
 }
 
 

@@ -88,18 +88,20 @@ $l(() => {
 
   $l(createLis)
 
+  function createRain(){
+    const audio = new Audio('./sound/Blop-Mark_DiAngelo-79054334.wav')
+    audio.play()
+  }
+
 
   $('.color-tile').on('mouseover', (e) => {
-    // $l('.color-tile').each( tile => {
       let hexChars = '0123456789ABCDEF'
       var color = ''
       for (let i = 0; i < 6; i++){
-        debugger
         color += hexChars[Math.floor(Math.random() * 16)]
       }
-      debugger
       $l(e.currentTarget).setColor(color)
-    // })
+      // createRain();
   })
 
   $l('.clear-easel').on('click', () => {
