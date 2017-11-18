@@ -122,7 +122,7 @@ $l(() => {
     let city = $l('.weather-input').htmlArray[0].value
     $l.ajax({
       type: 'GET',
-      url: `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=3351d61872a5b81e62b6bf2b9546efe3`,
+      url: `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=3351d61872a5b81e62b6bf2b9546efe3`,
       success(data) {
         console.log("We have your weather!")
         console.log(data);
