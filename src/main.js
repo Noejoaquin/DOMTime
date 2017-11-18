@@ -40,7 +40,6 @@ window.$l = function (el) {
     const nodeEls = document.querySelectorAll(el);
     nodeEls.forEach((el) => {
       newArr.push(el);
-      // collection = new DOMNodeCollection(newArr);
     });
     return new DOMNodeCollection(newArr);
   }

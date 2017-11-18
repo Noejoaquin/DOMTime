@@ -3,7 +3,6 @@ ul {
 }
 
 p, h2 {
-  /*display: inherit;*/
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   -webkit-margin-start: 0;
@@ -60,8 +59,6 @@ body {
 }
 
 .todo-header {
-  /*display: flex;*/
-  /*justify-content: center;*/
   color: green;
   font-size: 30px;
 }
@@ -75,12 +72,6 @@ body {
   border-radius: 2.5px;
   background-color: gold;
 }
-.update-todo-header-container {
-  /*display: flex;*/
-  /*justify-content: center;*/
-  /*align-items: center;*/
-}
-
 
 .container {
   margin-bottom: 40px;
@@ -91,7 +82,6 @@ body {
 
 .fill-in{
   width: 500px;
-  /*height: 100px;*/
   background-color: #E7E7E7;
   border-radius: 5.5px;
   text-align: center;
@@ -104,7 +94,6 @@ body {
 
 .basic-input {
   width: 318px;
-  /*height: 35px;*/
   font-size: 20px;
   margin-top: 7px;
   margin-bottom: 10px;
@@ -253,7 +242,6 @@ body {
 }
 
 .grid {
-  /*border: 1px solid red;*/
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -280,7 +268,6 @@ body {
 .grid-container {
   margin-right: 10%;
   vertical-align: top;
-  /*border: 1px solid black;*/
   background-color: #E7E7E7;
   height: 485px;
   position: relative;
@@ -311,10 +298,6 @@ body {
   position: absolute;
   bottom: 16px;
   right: 185px;
-}
-
-.color-tile{
-
 }
 
 .change-color {
@@ -348,52 +331,3 @@ body {
   margin-left: 10px;
 }
 
-.container-minor {
-  /*position: absolute;*/
-}
-
-.weather-container {
-  /*display: block;*/
-  /*position: absolute;*/
-}
-
-
-/*.new-button {
-  width: 150px;
-  height: 115px;
-  text-align: center;
-  background-color: green;
-  color: #fff;
-  font-family: sans-serif;
-  letter-spacing: 0.5px;
-  font-size: 20px;
-}
-
-.new-button:hover {
-  cursor: pointer;
-}
-
-.create-button-div {
-  display: flex;
-  justify-content: center;
-}
-
-.created-buttons {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  width: 100%
-}
-
-.created-button {
-  margin: 20px;
-  height: 80px;
-  width: 60px;
-  color: #fff;
-  background-color: aquamarine;
-}
-
-.added-button:hover {
-  cursor: pointer;
-}
-*/
