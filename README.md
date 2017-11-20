@@ -1,6 +1,6 @@
 # DOMTime
 
-Inspired by jQuery, DOMTime is a  JavaScript DOM manipulation library that
+Inspired by jQuery, [DOMTime](https://noejoaquin.github.io/DOMTime/) is a  JavaScript DOM manipulation library that
 traverses the DOM using vanilla JavaScript.
 
 Users can:
