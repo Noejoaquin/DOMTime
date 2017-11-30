@@ -55,7 +55,6 @@ $l(() => {
         color += hexChars[Math.floor(Math.random() * 16)]
       }
       $l(e.currentTarget).setColor(color)
-      // createRain();
   })
 
   $l('.clear-easel').on('click', () => {
