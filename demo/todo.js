@@ -48,7 +48,7 @@ $l(() => {
   }
 
 
-  $('.color-tile').on('mouseover', (e) => {
+  $l('.color-tile').on('mouseover', (e) => {
       let hexChars = '0123456789ABCDEF'
       var color = ''
       for (let i = 0; i < 6; i++){
