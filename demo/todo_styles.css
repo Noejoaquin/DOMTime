@@ -11,10 +11,11 @@ p, h2 {
 
 html {
   font-family: 'Vollkorn', serif;
+  height: 100%;
 }
 
 body {
-  background: linear-gradient( #A0ABC6, #49629F)
+  background: linear-gradient( #A0ABC6, #49629F);
 }
 
 .main-header {
@@ -330,4 +331,3 @@ body {
 .weather-button {
   margin-left: 10px;
 }
-
